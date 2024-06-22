@@ -1,8 +1,8 @@
-import Navbar from "@/components/module/Navbar";
+
 export default function Home() {
   return (
-   <>
-   
-   </>
+    <>
+      <h1>سلام</h1>
+    </>
   );
 }
