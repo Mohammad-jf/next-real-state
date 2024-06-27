@@ -5,10 +5,6 @@ import NextAuth from "next-auth/next";
 import { CredentialsProviders } from 'next-auth/providers'
 
 
-
-
-
-
 const authOptions = {
     session: { strategy: 'jwt' },
     providers: [
@@ -23,7 +19,7 @@ const authOptions = {
                 }
 
                 if (!email || !password) {
-                    throw new Error("اطلاعات کاربری نادرست است");
+                    throw new Error("اطلاعات کاربری نادرست ست");
                 }
 
                 const user = await User.findOne({ email });
@@ -34,17 +30,16 @@ const authOptions = {
                 const validPassword = await verifyPassword(password, user.password);
 
                 if (!validPassword) {
-                    throw new Error('گذرواژه نادرست است')
+                    throw new Error("ایمیل یا رمز عبور اشتباه است")
                 }
 
                 return { email }
             }
         })
     ]
-
 }
 
+const handler = NextAuth(authOptions)
 
 
-
-export default NextAuth(authOptions)
+export { handler as GET, handler as POST }
