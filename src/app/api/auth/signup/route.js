@@ -11,7 +11,7 @@ export async function POST() {
         if (!email || !password) {
             return NextResponse.json(
                 { error: 'لطفا اطلاعات معتبر وارد کنید' },
-                { status: 4222 })
+                { status: 422 })
         }
 
         const existingUser = await User.findOne({ email });
