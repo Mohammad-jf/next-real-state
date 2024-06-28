@@ -3,7 +3,7 @@ import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 import { hashPassword } from "@/utils/auth";
 
-export async function POST() {
+export async function POST(req) {
     try {
         await connectDB();
         const { email, password } = await req.json()
@@ -22,7 +22,7 @@ export async function POST() {
         const hashedPassword = await hashPassword(password);
         const user = await User.create({ email, password: hashedPassword });
         console.log(user);
-        return NextResponse.json({ message: 'حساب کاربری ایجاد شد' }, { status: 201 });
+        return NextResponse.json({ message: 'حساب کاربری ایجاد شد', status: 'success' }, { status: 201 });
 
 
     } catch (err) {
