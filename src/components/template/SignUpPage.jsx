@@ -1,9 +1,10 @@
 "use client";
-import styles from "@/template/signup.module.css";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import styles from "@/template/signup.module.css";
+import { ThreeDots } from "react-loader-spinner";
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const SignUpPage = () => {
     password: "",
     rePassword: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const changeHandler = (e) => {
     setFormData({
@@ -27,6 +29,7 @@ const SignUpPage = () => {
       return;
     }
 
+    setLoading(true);
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({
@@ -38,6 +41,7 @@ const SignUpPage = () => {
 
     const data = await res.json();
     console.log(data);
+    setLoading(false);
 
     if (res.status == 201) {
       toast.success("حساب کاربری ایجاد شد");
@@ -83,9 +87,19 @@ const SignUpPage = () => {
           value={formData.rePassword}
         />
 
-        <button type="submit" onClick={submitHandler}>
-          ثبت نام
-        </button>
+        {loading ? (
+          <ThreeDots
+            color="#304ffe"
+            height={45}
+            ariaLabel="three-dotss-loading"
+            visible={true}
+            wrapperStyle={{ margin: "auto" }}
+          />
+        ) : (
+          <button type="submit" onClick={submitHandler}>
+            ثبت نام
+          </button>
+        )}
       </form>
       <p>
         حساب کاربری دارید؟
