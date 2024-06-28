@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import styles from "./signup.module.css";
 import { ThreeDots } from "react-loader-spinner";
@@ -9,7 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const SignInPage = () => {
   const router = useRouter();
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,6 +38,8 @@ const SignInPage = () => {
 
     if (!res.error) {
       router.push("/");
+    } else {
+      toast.error(res.error);
     }
 
     setFormData({
@@ -80,6 +83,10 @@ const SignInPage = () => {
           </button>
         )}
       </form>
+      <p>
+        حساب کاربری ندارید؟
+        <Link href="/signup">یک حساب ایجاد کنید</Link>
+      </p>
       <Toaster />
     </div>
   );
