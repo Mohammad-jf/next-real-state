@@ -8,7 +8,7 @@ export const authOptions = {
     session: { strategy: 'jwt' },
     providers: [
         CredentialsProvider({
-            async authorize(credentials,) {
+            async authorize(credentials) {
                 const { email, password } = credentials;
                 try {
                     await connectDB();
