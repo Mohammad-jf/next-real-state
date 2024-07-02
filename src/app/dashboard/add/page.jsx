@@ -1,7 +1,7 @@
-import React from "react";
+import AddPage from "@/template/AddPage";
 
 const Add = () => {
-  return <div>Add</div>;
+  return <AddPage />;
 };
 
 export default Add;
