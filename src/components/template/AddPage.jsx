@@ -1,28 +1,72 @@
-'use client'
-import { useState } from 'react'
-import styles from './addPage.module.css'
-
+"use client";
+import { useState } from "react";
+import styles from "./addPage.module.css";
+import TextInput from "@/module/TextInput";
 
 const AddPage = () => {
     const [profileData, setProfileData] = useState({
-        title: '',
-        description: '',
-        location: '',
-        phoneNumber: '',
-        price: '',
-        realState: '',
+        title: "",
+        description: "",
+        location: "",
+        phoneNumber: "",
+        price: "",
+        realState: "",
         constructionDate: new Date(),
-        category: '',
+        category: "",
         rules: [],
-        amenities: []
+        amenities: [],
     });
 
 
-    return (
-        <div>
-            <h1>hello</h1>
-        </div>
-    )
-}
+    const submitHandler = () => {
+        console.log(profileData)
+    }
 
-export default AddPage
+    return (
+        <div className={styles.container}>
+            <h3>ثبت اگهی</h3>
+            <TextInput
+                title="عنوان آگهی"
+                name="title"
+                profileData={profileData}
+                setProfileData={setProfileData}
+                textArea={false}
+            />
+            <TextInput
+                title="توضیحات"
+                name="description"
+                profileData={profileData}
+                setProfileData={setProfileData}
+                textArea={true}
+            />
+            <TextInput
+                title="آدرس"
+                name="location"
+                profileData={profileData}
+                setProfileData={setProfileData}
+            />
+            <TextInput
+                title="شماره تماس"
+                name="phoneNumber"
+                profileData={profileData}
+                setProfileData={setProfileData}
+            />
+            <TextInput
+                title="قیمت(تومان)"
+                name="price"
+                profileData={profileData}
+                setProfileData={setProfileData}
+            />
+            <TextInput
+                title="بنگاه"
+                name="realState"
+                profileData={profileData}
+                setProfileData={setProfileData}
+            />
+            <button className={styles.submit} onClick={submitHandler}>ثبت آگهی</button>
+        </div>
+    );
+};
+
+
+export default AddPage;

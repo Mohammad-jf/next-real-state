@@ -1,6 +1,6 @@
 import styles from "./dashboardPage.module.css";
 
-const DashboardPage = async ({ createdAt }) => {
+const DashboardPage = ({ createdAt }) => {
   const created = new Date(createdAt).toLocaleDateString("fa-IR");
 
   return (
