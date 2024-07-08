@@ -2,6 +2,8 @@
 import { useState } from "react";
 import styles from "./addPage.module.css";
 import TextInput from "@/module/TextInput";
+import RadioList from "@/module/RadioList";
+
 
 const AddPage = () => {
     const [profileData, setProfileData] = useState({
@@ -63,6 +65,7 @@ const AddPage = () => {
                 profileData={profileData}
                 setProfileData={setProfileData}
             />
+            <RadioList profileData={profileData} setProfileData={setProfileData} />
             <button className={styles.submit} onClick={submitHandler}>ثبت آگهی</button>
         </div>
     );
