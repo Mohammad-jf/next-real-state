@@ -21,6 +21,7 @@ const TextList = ({ title, profileData, setProfileData, type }) => {
 
     const deleteHandler = (index) => {
         const list = [...profileData[type]];
+        // list.splice(index,1) altenative way and you set this to state instead of editedlist
         const editedList = list.filter((item) => item !== list[index]);
         setProfileData({
             ...profileData,

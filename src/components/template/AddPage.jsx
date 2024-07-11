@@ -4,6 +4,7 @@ import styles from "./addPage.module.css";
 import TextInput from "@/module/TextInput";
 import RadioList from "@/module/RadioList";
 import TextList from "@/module/TextList";
+import CustomDatePicker from "@/module/CustomDatePicker";
 
 
 const AddPage = () => {
@@ -77,6 +78,7 @@ const AddPage = () => {
                 type="rules"
                 profileData={profileData}
                 setProfileData={setProfileData} />
+            <CustomDatePicker profileData={profileData} setProfileData={setProfileData} />
             <button className={styles.submit} onClick={submitHandler}>ثبت آگهی</button>
         </div>
     );
