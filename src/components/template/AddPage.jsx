@@ -27,6 +27,7 @@ const AddPage = () => {
 
     const submitHandler = async () => {
         setLoading(true)
+        
         const res = await fetch('/api/profile', {
             method: "POST",
             body: JSON.stringify({ ...profileData }),
@@ -34,12 +35,16 @@ const AddPage = () => {
         });
 
         const data = await res.json();
+
         setLoading(false)
+
         if (data.error) {
             toast.error(data.error)
         } else {
             console.log(data)
+            toast.success(data.message)
         }
+
         setProfileData({
             title: "",
             description: "",
