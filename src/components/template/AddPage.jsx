@@ -22,8 +22,27 @@ const AddPage = () => {
     });
 
 
-    const submitHandler = () => {
-        console.log(profileData)
+    const submitHandler = async () => {
+        const res = await fetch('/api/profile', {
+            method: "POST",
+            body: JSON.stringify({ ...profileData }),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        const data = await res.json();
+        console.log(data)
+        setProfileData({
+            title: "",
+            description: "",
+            location: "",
+            phoneNumber: "",
+            price: "",
+            realState: "",
+            constructionDate: new Date(),
+            category: "",
+            rules: [],
+            amenities: [],
+        })
     }
 
     return (
