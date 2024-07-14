@@ -74,3 +74,82 @@ export async function POST(req) {
             { status: 500 })
     }
 }
+
+
+
+export async function PATCH(req) {
+    try {
+        await connectDB();
+
+        const body = await req.json();
+        const {
+            _id,
+            title,
+            description,
+            location,
+            phoneNumber,
+            realState,
+            price,
+            constructionDate,
+            amenities,
+            rules,
+            category } = body
+
+        const session = await getServerSession(req);
+        if (!session) {
+            NextResponse.json({ error: "وارد حساب کاربری خود شوید" }, { status: 401 });
+        }
+
+        const user = await User.findOne({ email: session.user.email });
+        if (!user) {
+            return NextResponse.json(
+                { error: 'کاربری با این ایمیل وجود ندارد' },
+                { status: 404 })
+        }
+
+        if (
+            !_id ||
+            !title ||
+            !description ||
+            !location ||
+            !phoneNumber ||
+            !realState ||
+            !price ||
+            !constructionDate ||
+            !category) {
+            return NextResponse.json(
+                { error: "اطلاعات را به درستی وارد کنید" },
+                { status: 400 })
+        }
+
+
+        const profile = await Profile.findOne({ _id });
+        if (!user._id.equals(profile.userId)) {
+            return NextResponse.json({ error: "دسترسی شما به این آگهی محدود شده است" },
+                { status: 403 })
+        }
+
+
+        profile.title = title;
+        profile.description = description;
+        profile.loaction = location;
+        profile.phoneNumber = phoneNumber;
+        profile.realState = realState;
+        profile.price = price;
+        profile.constructionDate = constructionDate;
+        profile.amenities = amenities;
+        profile.rules = rules;
+        profile.category = category;
+
+        await profile.save()
+        return NextResponse.json({ message: "آگهی با موفقیت ویراش شد" },
+            { status: 200 })
+
+
+    } catch (error) {
+        console.log(err)
+        return NextResponse.json(
+            { error: "مشکلی در سرور رخ داده است" },
+            { status: 500 })
+    }
+}
