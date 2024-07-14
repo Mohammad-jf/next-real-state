@@ -2,6 +2,7 @@ import styles from './customDatePicker.module.css'
 import DatePicker from 'react-multi-date-picker'
 import persian from 'react-date-object/calendars/persian'
 import persian_fa from 'react-date-object/locales/persian_fa'
+
 const CustomDatePicker = ({ profileData, setProfileData }) => {
     const changeHandler = (e) => {
         const date = new Date(e);
