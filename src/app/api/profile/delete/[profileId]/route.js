@@ -7,11 +7,14 @@ import { NextResponse } from "next/server";
 
 
 export async function DELETE(req, context) {
-
     try {
         await connectDB();
         const id = context.params.profileId
+        
+        console.log(context)
+
         const session = await getServerSession(req);
+
         if (!session) {
             NextResponse.json({ error: "وارد حساب کاربری خود شوید" }, { status: 401 });
         }
@@ -29,7 +32,6 @@ export async function DELETE(req, context) {
             return NextResponse.json({ error: "دسترسی شما به این آگهی محدود شده است" },
                 { status: 403 })
         }
-
 
         await Profile.deleteOne({ _id: id });
         return NextResponse.json({ message: 'آگهی مورد نظر حذف شد' }, { status: 200 })

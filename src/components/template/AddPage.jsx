@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./addPage.module.css";
 import TextInput from "@/module/TextInput";
 import RadioList from "@/module/RadioList";
@@ -14,18 +14,24 @@ const AddPage = ({ profile }) => {
     const router = useRouter();
     const [loading, setLoading] = useState(false)
     const [profileData, setProfileData] = useState({
-        _id: profile ? profile._id : '',
-        title: profile ? profile.title : "",
-        description: profile ? profile.description : "",
-        location: profile ? profile.location : "",
-        phoneNumber: profile ? profile.phoneNumber : "",
-        price: profile ? profile.price : "",
-        realState: profile ? profile.realState : "",
-        constructionDate: profile ? profile.constructionDate : new Date(),
-        category: profile ? profile.category : "",
-        rules: profile ? profile.rules : [],
-        amenities: profile ? profile.amenities : [],
+        title: "",
+        description: "",
+        location: "",
+        phoneNumber: "",
+        price: "",
+        realState: "",
+        constructionDate: new Date(),
+        category: "",
+        rules: [],
+        amenities: [],
     });
+
+    useEffect(() => {
+        if (profile) {
+            setProfileData(profile)
+        }
+    }, [profile])
+
 
 
     const submitHandler = async () => {
@@ -60,6 +66,10 @@ const AddPage = ({ profile }) => {
             rules: [],
             amenities: [],
         })
+        router.refresh();
+        // router.push('/dashboard/my-profiles')
+
+
     }
 
 
@@ -83,7 +93,21 @@ const AddPage = ({ profile }) => {
             toast.success(data.message)
         }
 
-        router.push('/dashboard/my-profiles')
+        setProfileData({
+            title: "",
+            description: "",
+            location: "",
+            phoneNumber: "",
+            price: "",
+            realState: "",
+            constructionDate: new Date(),
+            category: "",
+            rules: [],
+            amenities: [],
+        })
+
+        router.refresh();
+        // router.push('/dashboard/my-profiles')
     }
 
     return (
