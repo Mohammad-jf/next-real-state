@@ -132,7 +132,7 @@ export async function PATCH(req) {
 
         profile.title = title;
         profile.description = description;
-        profile.loaction = location;
+        profile.location = location;
         profile.phoneNumber = phoneNumber;
         profile.realState = realState;
         profile.price = price;

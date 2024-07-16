@@ -26,7 +26,7 @@ const Card = ({ data }) => {
         <HiOutlineLocationMarker />
         {location}
       </p>
-      <span>{sp(price)} تومان</span>
+      <span>{sp(price ? price : 0)} تومان</span>
       <Link href='/'>مشاهده آگهی
         <BiLeftArrowAlt />
       </Link>
