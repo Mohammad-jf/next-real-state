@@ -11,8 +11,6 @@ export async function DELETE(req, context) {
         await connectDB();
         const id = context.params.profileId
         
-        console.log(context)
-
         const session = await getServerSession(req);
 
         if (!session) {
