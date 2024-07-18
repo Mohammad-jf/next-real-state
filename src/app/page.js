@@ -1,8 +1,9 @@
+import HomePage from "@/template/HomePage";
 
 export default function Home() {
   return (
     <>
-      <h1>سلام</h1>
+      <HomePage/>
     </>
   );
 }
