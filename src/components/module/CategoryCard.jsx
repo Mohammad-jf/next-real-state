@@ -5,7 +5,7 @@ import Image from "next/image";
 const CategoryCard = ({ title, name }) => {
   return (
     <div className={styles.card}>
-      <Link href="/">
+      <Link href={`/buy-residentials?category=${name}`}>
         <Image
           src={`/images/${name}.png`}
           alt={title}
