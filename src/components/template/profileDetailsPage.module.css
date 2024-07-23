@@ -32,7 +32,11 @@
   margin-bottom: 50px;
 }
 
-.main li{
+.main ul{
+  padding-right: 20px;
+  margin-bottom: 50px;
+}
+.main li::marker{
   color:#304ffe;
 }
 
