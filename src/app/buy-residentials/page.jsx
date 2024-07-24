@@ -5,7 +5,7 @@ const Residential = async ({ searchParams }) => {
     cache: "no-store",
   });
   const data = await res.json();
-
+  console.log(data)
   if (data.error) return <h3> مشکلی پیش امده است</h3>;
 
   let finalData = data.data;
