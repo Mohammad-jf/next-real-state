@@ -5,6 +5,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Real state | Admin Panel",
+  description: "next real state",
+};
+
 const layout = async ({ children }) => {
   await connectDB();
   const session = await getServerSession(authOptions);
