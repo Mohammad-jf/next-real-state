@@ -14,7 +14,7 @@ const ProfileDetails = async ({ params }) => {
 
 export default ProfileDetails;
 
-// SEO metaData
+// SEO metaData only in app folder
 export const generateMetadata = async ({ params }) => {
   await connectDB();
   const { profileId } = params;
